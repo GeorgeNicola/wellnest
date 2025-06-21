@@ -1,0 +1,25 @@
+<resources>
+    <!-- GENERAL -->
+    <string name="app_name">WellNest</string>
+    <string name="main_button">WellNest Click</string>
+
+
+
+
+
+    <!-- AUTHENTICATION -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="login_fragment_register_button">Don\'t have an account? Register</string>
+    <string name="register_fragment_login_button">Already have an account? Login</string>
+
+
+
+    <!-- HOME -->
+    <string name="home_fragment_title">HOME Fragment</string>
+
+
+</resources>

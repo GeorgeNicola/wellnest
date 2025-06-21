@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_authentication"
+    app:startDestination="@id/login_fragment">
+
+    <include app:graph="@navigation/navigation_home"/>
+
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.cst.wellnest.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_fragment_to_register_fragment"
+            app:destination="@id/register_fragment" />
+        <action
+            android:id="@+id/action_login_fragment_to_home_fragment"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true"
+            app:destination="@id/navigation_home"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/register_fragment"
+        android:name="com.cst.wellnest.ui.register.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register" >
+        <argument
+            app:nullable="false"
+            android:name="email"
+            app:argType="string"
+            />
+        <action
+            android:id="@+id/action_register_fragment_to_login_fragment"
+            app:destination="@id/login_fragment" />
+    </fragment>
+
+</navigation>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Core Theme Colors -->
+    <color name="primary">#4A90E2</color>         <!-- Main Blue -->
+    <color name="secondary">#50E3C2</color>       <!-- Aqua Accent -->
+    <color name="background">#E6F2FA</color>      <!-- Light Background -->
+
+    <!-- Neutral Colors -->
+    <color name="text_primary">#4A4A4A</color>    <!-- Dark Gray Text -->
+    <color name="surface">#FAFAFA</color>         <!-- Card/Container BG -->
+
+    <!-- Accent / Alerts -->
+    <color name="accent">#FF6B6B</color>          <!-- Coral for alerts/actions -->
+</resources>
