@@ -23,6 +23,13 @@
             app:launchSingleTop="true"
             app:destination="@id/navigation_home"
             />
+        <action
+            android:id="@+id/action_login_fragment_to_navigation_bottom"
+            app:popUpTo="@id/navigation_bottom"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true"
+            app:destination="@id/navigation_bottom"
+            />
     </fragment>
 
     <fragment

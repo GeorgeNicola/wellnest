@@ -25,38 +25,14 @@ class MainActivity : AppCompatActivity() {
             this.goToMainAppActivity()
             Log.e("TAG","setOnClickListener")
         }
+
+        // TO DO:
+        // If user is detected => goToMainAppActivity()
+        // Else => goToControllerActivity()
+
+        goToControllerActivity()
     }
 
-
-    override fun onStart() {
-        super.onStart()
-
-        Log.e("TAG","onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        Log.e("TAG","onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-        Log.e("TAG","onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        Log.e("TAG","onStop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        Log.e("TAG","onDestroy")
-    }
 
     private fun goToControllerActivity() {
         val intent = Intent(this, ControllerActivity::class.java)

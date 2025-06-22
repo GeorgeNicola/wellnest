@@ -1,5 +1,6 @@
 package com.cst.wellnest.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,8 +12,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
+import com.cst.wellnest.MainAppActivity
 import com.cst.wellnest.R
+
 
 class LoginFragment: Fragment() {
     override fun onCreateView(
@@ -38,7 +40,7 @@ class LoginFragment: Fragment() {
             // Check email & password
             // Save to local idk
 
-            goToHome()
+            goToMainAppActivity()
         }
 
         goToRegisterButton?.setOnClickListener {
@@ -53,7 +55,13 @@ class LoginFragment: Fragment() {
     }
 
     private fun goToHome() {
-        val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+        val action = LoginFragmentDirections.actionLoginFragmentToNavigationBottom()
         findNavController().navigate(action)
+    }
+
+    private fun goToMainAppActivity() {
+        val intent = Intent(requireContext(), MainAppActivity::class.java)
+        startActivity(intent)
+
     }
 }
