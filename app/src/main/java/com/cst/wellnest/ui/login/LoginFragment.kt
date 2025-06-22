@@ -12,7 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.cst.wellnest.MainAppActivity
+import com.cst.wellnest.AppActivity
 import com.cst.wellnest.R
 
 
@@ -60,7 +60,7 @@ class LoginFragment: Fragment() {
     }
 
     private fun goToMainAppActivity() {
-        val intent = Intent(requireContext(), MainAppActivity::class.java)
+        val intent = Intent(requireContext(), AppActivity::class.java)
         startActivity(intent)
 
     }

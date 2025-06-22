@@ -35,14 +35,14 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun goToControllerActivity() {
-        val intent = Intent(this, ControllerActivity::class.java)
+        val intent = Intent(this, AuthActivity::class.java)
         startActivity((intent))
 
         finish()
     }
 
     private fun goToMainAppActivity() {
-        val intent = Intent(this, MainAppActivity::class.java)
+        val intent = Intent(this, AppActivity::class.java)
         startActivity((intent))
 
         finish()
