@@ -9,8 +9,6 @@
     android:id="@+id/main_app_activity"
     >
 
-
-
     <!-- BottomNavigationView -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"

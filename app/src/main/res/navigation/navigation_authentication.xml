@@ -5,7 +5,7 @@
     android:id="@+id/navigation_authentication"
     app:startDestination="@id/login_fragment">
 
-    <include app:graph="@navigation/navigation_home"/>
+    <include app:graph="@navigation/navigation_bottom"/>
 
 
     <fragment
@@ -16,13 +16,6 @@
         <action
             android:id="@+id/action_login_fragment_to_register_fragment"
             app:destination="@id/register_fragment" />
-        <action
-            android:id="@+id/action_login_fragment_to_home_fragment"
-            app:popUpTo="@id/navigation_home"
-            app:popUpToInclusive="true"
-            app:launchSingleTop="true"
-            app:destination="@id/navigation_home"
-            />
         <action
             android:id="@+id/action_login_fragment_to_navigation_bottom"
             app:popUpTo="@id/navigation_bottom"
