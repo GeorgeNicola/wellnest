@@ -20,6 +20,7 @@
 
     <!-- HOME -->
     <string name="home_fragment_title">HOME Fragment</string>
+    <string name="profile_fragment_title">PROFILE Fragment</string>
 
 
 </resources>

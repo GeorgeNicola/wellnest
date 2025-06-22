@@ -27,7 +27,7 @@ class RegisterFragment: Fragment() {
         Log.e("TAG","onViewCreated - RegisterFragment")
 
         val emailEditText = view.findViewById<EditText>(R.id.emailEditText)
-            emailEditText.setText(args.email)
+        emailEditText.setText(args.email)
 
         val passwordEditText = view.findViewById<EditText>(R.id.passwordEditText)
         val registerButton = view.findViewById<Button>(R.id.registerButton)
