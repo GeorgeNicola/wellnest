@@ -4,12 +4,15 @@
         android:icon="@drawable/ic_navigation_calories_counter"
         android:title="@string/bottom_navigation_menu_calories_counter" />
     <item
-        android:id="@+id/home_fragment_nav"
-        android:icon="@drawable/ic_navigation_home"
-        android:title="@string/bottom_navigation_menu_home" />
+        android:id="@+id/nav_pomodoro_fragment"
+        android:icon="@drawable/ic_navigation_pomodoro"
+        android:title="@string/bottom_navigation_pomodoro" />
     <item
-        android:id="@+id/profile_fragment"
+        android:id="@+id/activity_fragment"
+        android:icon="@drawable/ic_navigation_activity"
+        android:title="@string/bottom_navigation_menu_activity" />
+    <item
+        android:id="@+id/pomodoro_fragment"
         android:icon="@drawable/ic_navigation_profile"
         android:title="@string/bottom_navigation_menu_profile" />
-
 </menu>

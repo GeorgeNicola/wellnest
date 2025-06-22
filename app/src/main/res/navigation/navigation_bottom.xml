@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/home_fragment_nav"
+    app:startDestination="@id/nav_pomodoro_fragment"
     android:id="@+id/navigation_bottom"
     >
-
-    <fragment
-        android:id="@+id/home_fragment_nav"
-        android:name="com.cst.wellnest.ui.home.HomeFragment"
-        android:label="Home" />
-
-    <fragment
-        android:id="@+id/profile_fragment"
-        android:name="com.cst.wellnest.ui.pofile.ProfileFragment"
-        android:label="Profile" />
 
     <fragment
         android:id="@+id/calorie_counter_fragment"
         android:name="com.cst.wellnest.ui.calorieCounter.CalorieCounter"
         android:label="Calorie Counter" />
+    <fragment
+        android:id="@+id/nav_pomodoro_fragment"
+        android:name="com.cst.wellnest.ui.pomodoro.PomodoroFragment"
+        android:label="Pomodoro" />
+    <fragment
+        android:id="@+id/activity_fragment"
+        android:name="com.cst.wellnest.ui.activity.ActivityFragment"
+        android:label="Activity" />
+    <fragment
+        android:id="@+id/pomodoro_fragment"
+        android:name="com.cst.wellnest.ui.profile.ProfileFragment"
+        android:label="Profile" />
 </navigation>

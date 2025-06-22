@@ -5,7 +5,9 @@
 
     <!-- Bottom Navigation Menu -->
     <string name="bottom_navigation_menu_home">Home</string>
+    <string name="bottom_navigation_pomodoro">Pomodoro</string>
     <string name="bottom_navigation_menu_profile">Profile</string>
+    <string name="bottom_navigation_menu_activity">Activity</string>
     <string name="bottom_navigation_menu_calories_counter">Calories Counter</string>"
 
 
@@ -23,6 +25,8 @@
 
     <!-- Navigation -->
     <string name="home_fragment_title">HOME Fragment</string>
+    <string name="pomodoro_fragment_title">POMODORO Fragment</string>
+    <string name="activity_fragment_title">ACTIVITY Fragment</string>
     <string name="profile_fragment_title">PROFILE Fragment</string>
     <string name="calorie_counter_fragment_title">CALORIE COUNTER Fragment</string>"
 
