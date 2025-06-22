@@ -13,7 +13,7 @@ kotlinxSerializationJson = "1.7.3"
 material = "1.12.0"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
-materialVersion = "1.11.0"
+materialVersion = "1.12.0"
 navigation = "2.9.0"
 
 [libraries]

@@ -4,20 +4,33 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainAppActivity : AppCompatActivity()  {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main_app)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_app)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        val navigationHost =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navigationHost.navController
+//        val navController = findNavController(R.id.nav_host_fragment)
+
+//        val appBarConfiguration = AppBarConfiguration(setOf(R.id.home_fragment_nav, R.id.profile_fragment, R.id.calorie_counter_fragment)      )
+//        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        bottomNavigationView.setupWithNavController(navController)
 
         Log.e("TAG","onCreate - MainAppActivity")
     }
+
+
 }

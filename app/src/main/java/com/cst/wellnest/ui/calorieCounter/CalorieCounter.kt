@@ -1,4 +1,4 @@
-package com.cst.wellnest.ui.pofile
+package com.cst.wellnest.ui.calorieCounter
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cst.wellnest.R
 
-class ProfileFragment: Fragment() {
+class CalorieCounter: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.fragment_profile, container, false)
+    ): View = inflater.inflate(R.layout.fragment_calorie_counter, container, false)
+
+
 }

@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.primary_button).setOnClickListener {
-            this.goToControllerActivity()
+            this.goToMainAppActivity()
             Log.e("TAG","setOnClickListener")
         }
     }
@@ -60,6 +60,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun goToControllerActivity() {
         val intent = Intent(this, ControllerActivity::class.java)
+        startActivity((intent))
+
+        finish()
+    }
+
+    private fun goToMainAppActivity() {
+        val intent = Intent(this, MainAppActivity::class.java)
         startActivity((intent))
 
         finish()

@@ -38,7 +38,6 @@ android {
 
 dependencies {
 
-    implementation(libs.material.v1110)
     implementation(libs.androidx.navigation.ui.ktx)
     // Jetpack Compose integration
     implementation(libs.androidx.navigation.compose)
