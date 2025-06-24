@@ -11,9 +11,18 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.cst.wellnest.AppActivity
 import com.cst.wellnest.R
+import com.cst.wellnest.managers.SharedPrefsManager
+import com.cst.wellnest.networking.repository.AuthenticationRepository
+import com.cst.wellnest.utils.extensions.showToast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import java.io.IOException
 
 
 class LoginFragment: Fragment() {
@@ -26,19 +35,17 @@ class LoginFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.e("TAG","onViewCreated - LoginFragment")
 
-
         val emailEditText = view.findViewById<EditText>(R.id.emailEditText)
-        val passwordEditText = view.findViewById<EditText>(R.id.passwordEditText)
         val loginButton = view.findViewById<Button>(R.id.loginButton)
         val goToRegisterButton = view.findViewById<TextView>(R.id.goToRegisterText)
 
         loginButton?.setOnClickListener {
             val email = emailEditText.text.toString()
-            val password = passwordEditText.text.toString()
             Toast.makeText(requireContext(), "Logging in with $email", Toast.LENGTH_SHORT).show()
 
             // Check email & password
             // Save to local idk
+            doLogin()
 
             goToMainAppActivity()
         }
@@ -63,5 +70,37 @@ class LoginFragment: Fragment() {
         val intent = Intent(requireContext(), AppActivity::class.java)
         startActivity(intent)
 
+    }
+
+    private fun doLogin() {
+        val email = view?.findViewById<EditText>(R.id.emailEditText)?.text?.toString()
+        val password = view?.findViewById<EditText>(R.id.passwordEditText)?.text?.toString()
+
+        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+            "Invalid credentials".showToast(requireContext())
+            return
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val result = withContext(Dispatchers.IO) {
+                    AuthenticationRepository.login(email, password)
+                }
+
+                "Login success: ${result.token}".showToast(requireContext())
+
+                withContext(Dispatchers.IO) {
+                    SharedPrefsManager.saveAuthToken(result.token)
+                }
+
+                goToHome()
+            } catch (e: IOException) {
+                ("Please check your internet connection").showToast(requireContext())
+            } catch (e: HttpException) {
+                ("Server error: ${e.code()}").showToast(requireContext())
+            } catch (e: Exception) {
+                ("Unexpected error: ${e.localizedMessage}").showToast(requireContext())
+            }
+        }
     }
 }
