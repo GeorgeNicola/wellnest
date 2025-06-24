@@ -30,4 +30,12 @@
     <string name="profile_fragment_title">PROFILE Fragment</string>
     <string name="calorie_counter_fragment_title">CALORIE COUNTER Fragment</string>"
 
+
+
+    <!-- Calorie Counter -->
+    <string name="calories_format">%1$d cal</string>
+    <string name="protein_format">P: %1$d g</string>
+    <string name="carbs_format">C: %1$d g</string>
+    <string name="fats_format">F: %1$d g</string>
+
 </resources>

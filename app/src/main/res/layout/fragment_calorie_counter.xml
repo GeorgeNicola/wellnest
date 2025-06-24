@@ -2,27 +2,117 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background">
 
     <LinearLayout
-        android:id="@+id/calorie_counter_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/calorieCounterTitleLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.10">
 
         <TextView
-            android:id="@+id/goToRegisterText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/calorie_counter_fragment_title"
-            android:textColor="@android:color/primary_text_light"
-            android:textSize="16sp"
+            android:id="@+id/calorieCounterTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="24dp"
             android:clickable="true"
-            android:focusable="true" />
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/calorie_counter_fragment_title"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="16sp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/totalCaloriesSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/calorieCounterTitleLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.10">
+
+        <TextView
+            android:id="@+id/tv_total_calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2000 cal"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:paddingHorizontal="12dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_total_protein"
+            />
+
+        <!-- Protein -->
+        <TextView
+            android:id="@+id/tv_total_protein"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="P: 150g"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:paddingHorizontal="12dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_total_calories"
+            app:layout_constraintEnd_toStartOf="@id/tv_total_carbs"
+            />
+
+        <!-- Carbs -->
+        <TextView
+            android:id="@+id/tv_total_carbs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="C: 250g"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:paddingHorizontal="12dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_total_protein"
+            app:layout_constraintEnd_toStartOf="@id/tv_total_fats"
+            />
+
+        <!-- Fats -->
+        <TextView
+            android:id="@+id/tv_total_fats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="F: 70g"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:paddingHorizontal="12dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_total_carbs"
+            app:layout_constraintEnd_toStartOf="parent"
+            />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_items"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/totalCaloriesSection"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
