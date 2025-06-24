@@ -2,6 +2,12 @@
     <!-- GENERAL -->
     <string name="app_name">WellNest</string>
     <string name="main_button">WellNest Click</string>
+    <string name="delete">Delete</string>
+
+    <!-- -->
+    <string name="image">Image</string>
+    <string name="content_description">Content Description</string>
+
 
     <!-- Bottom Navigation Menu -->
     <string name="bottom_navigation_menu_home">Home</string>
@@ -9,8 +15,6 @@
     <string name="bottom_navigation_menu_profile">Profile</string>
     <string name="bottom_navigation_menu_activity">Activity</string>
     <string name="bottom_navigation_menu_calories_counter">Calories Counter</string>"
-
-
 
     <!-- AUTHENTICATION -->
     <string name="email">Email</string>
@@ -28,7 +32,7 @@
     <string name="pomodoro_fragment_title">POMODORO Fragment</string>
     <string name="activity_fragment_title">ACTIVITY Fragment</string>
     <string name="profile_fragment_title">PROFILE Fragment</string>
-    <string name="calorie_counter_fragment_title">CALORIE COUNTER Fragment</string>"
+    <string name="calorie_tracker_fragment_title">Calorie Tracker</string>"
 
 
 
@@ -37,5 +41,12 @@
     <string name="protein_format">P: %1$d g</string>
     <string name="carbs_format">C: %1$d g</string>
     <string name="fats_format">F: %1$d g</string>
+
+    <string name="total_calories_format">Calories: %1$d kcal / %2$d kcal</string>
+    <string name="total_protein_format">Protein: %1$dg / %2$dg</string>
+    <string name="total_carbs_format">Carbs: %1$dg / %2$dg</string>
+    <string name="total_fats_format">Fats: %1$dg / %2$dg</string>
+    <string name="macro_summary_format">%1$d kcal | P: %2$dg | C: %3$dg | F: %4$dg</string>
+
 
 </resources>

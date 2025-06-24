@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.primary_button).setOnClickListener {
-            this.goToMainAppActivity()
+            this.initAppActivity()
             Log.e("TAG","setOnClickListener")
         }
 
@@ -30,18 +30,18 @@ class MainActivity : AppCompatActivity() {
         // If user is detected => goToMainAppActivity()
         // Else => goToControllerActivity()
 
-        goToControllerActivity()
+        initControllerActivity()
     }
 
 
-    private fun goToControllerActivity() {
+    private fun initControllerActivity() {
         val intent = Intent(this, AuthActivity::class.java)
         startActivity((intent))
 
         finish()
     }
 
-    private fun goToMainAppActivity() {
+    private fun initAppActivity() {
         val intent = Intent(this, AppActivity::class.java)
         startActivity((intent))
 
