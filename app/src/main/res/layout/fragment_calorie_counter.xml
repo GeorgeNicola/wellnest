@@ -4,112 +4,178 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/background">
+    android:background="@color/background"
+    >
 
+    <!-- Title Section -->
     <LinearLayout
-        android:id="@+id/calorieCounterTitleLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical"
+        android:id="@+id/calorie_tracker_title_section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.10">
+        android:paddingTop="24dp"
+        android:paddingHorizontal="24dp"
+        >
+
+        <ImageView
+            android:id="@+id/appIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_navigation_calories_counter"
+        android:contentDescription="@string/image"
+        android:layout_marginEnd="8dp" />
 
         <TextView
-            android:id="@+id/calorieCounterTitle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="24dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="@string/calorie_counter_fragment_title"
-            android:textColor="@android:color/primary_text_light"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/totalCaloriesSection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/calorieCounterTitleLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.10">
-
-        <TextView
-            android:id="@+id/tv_total_calories"
+            android:id="@+id/calorie_tracker_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="2000 cal"
-            android:textStyle="bold"
+            android:text="@string/calorie_tracker_fragment_title"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Day Selector Section -->
+    <LinearLayout
+        android:id="@+id/day_selector_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_day_selector"
+        app:layout_constraintTop_toBottomOf="@id/calorie_tracker_title_section"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_day_selector_left"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_left"
+            android:contentDescription="@string/content_description"
+            app:tint="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_day_selector"
+            tools:text="June 24, 2025"
+            android:text="June 24, 2025"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:paddingHorizontal="12dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tv_total_protein"
-            />
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp" />
+
+        <ImageButton
+            android:id="@+id/btn_day_selector_right"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_right"
+            android:contentDescription="@string/content_description"
+            app:tint="@android:color/black" />
+    </LinearLayout>
+
+    <!-- Total Macros Section -->
+    <LinearLayout
+        android:id="@+id/macronutrients_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/day_selector_section"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="14dp">
+
+        <!-- Calories -->
+        <TextView
+            tools:text="Calories: 1400 / 2000"
+            android:id="@+id/tv_macronutrients_calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <ProgressBar
+            android:id="@+id/progress_macronutrients_calories"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:progress="70"
+            android:max="100"
+            android:progressDrawable="@drawable/progress_bar_macronutrients"
+            android:layout_marginBottom="16dp" />
 
         <!-- Protein -->
         <TextView
-            android:id="@+id/tv_total_protein"
+            android:id="@+id/tv_macronutrients_protein"
+            tools:text="Protein: 60g / 120g"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="P: 150g"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:paddingHorizontal="12dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_total_calories"
-            app:layout_constraintEnd_toStartOf="@id/tv_total_carbs"
-            />
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <ProgressBar
+            android:id="@+id/progress_macronutrients_protein"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:progress="50"
+            android:max="100"
+            android:progressDrawable="@drawable/progress_bar_macronutrients"
+            android:layout_marginBottom="12dp" />
 
         <!-- Carbs -->
         <TextView
-            android:id="@+id/tv_total_carbs"
+            android:id="@+id/tv_macronutrients_carbs"
+            tools:text="Carbs: 150g / 250g"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="C: 250g"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:paddingHorizontal="12dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_total_protein"
-            app:layout_constraintEnd_toStartOf="@id/tv_total_fats"
-            />
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <ProgressBar
+            android:id="@+id/progress_macronutrients_carbs"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:progress="60"
+            android:max="100"
+            android:progressDrawable="@drawable/progress_bar_macronutrients"
+            android:layout_marginBottom="12dp" />
 
         <!-- Fats -->
         <TextView
-            android:id="@+id/tv_total_fats"
+            android:id="@+id/tv_macronutrients_fats"
+            tools:text="Fats: 40g / 70g"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="F: 70g"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:paddingHorizontal="12dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_total_carbs"
-            app:layout_constraintEnd_toStartOf="parent"
-            />
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
 
+        <ProgressBar
+            android:id="@+id/progress_macronutrients_fats"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:progress="57"
+            android:max="100"
+            android:progressDrawable="@drawable/progress_bar_macronutrients" />
     </LinearLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_items"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/totalCaloriesSection"
+        app:layout_constraintTop_toBottomOf="@id/macronutrients_section"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

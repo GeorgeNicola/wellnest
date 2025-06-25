@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,11 +25,11 @@ class CalorieCounterFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadFoodAdapter(view)
-        populateTotalCalories(view)
+        initFoodAdapter(view)
+        initTotalMacronutrientsSection(view)
     }
 
-    private fun loadFoodAdapter(view: View) {
+    private fun initFoodAdapter(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_items)
 
         val items = mutableListOf(
@@ -53,17 +54,39 @@ class CalorieCounterFragment(
         recyclerView.layoutManager = layoutManager
     }
 
-    private fun populateTotalCalories(view: View) {
-        val totalCalories = view.findViewById<TextView>(R.id.tv_total_calories)
-        val totalProtein = view.findViewById<TextView>(R.id.tv_total_protein)
-        val totalCarbs = view.findViewById<TextView>(R.id.tv_total_carbs)
-        val totalFats = view.findViewById<TextView>(R.id.tv_total_fats)
+    private fun initTotalMacronutrientsSection(view: View) {
+        val caloriesGoal = 3000
+        val proteinGoal = 250
+        val carbsGoal = 250
+        val fatsGoal = 70
+
+        val totalCaloriesTV = view.findViewById<TextView>(R.id.tv_macronutrients_calories)
+        val totalCaloriesProgress = view.findViewById<ProgressBar>(R.id.progress_macronutrients_calories)
+        val totalProteinTV = view.findViewById<TextView>(R.id.tv_macronutrients_protein)
+        val totalProteinProgress = view.findViewById<ProgressBar>(R.id.progress_macronutrients_protein)
+        val totalCarbsTV = view.findViewById<TextView>(R.id.tv_macronutrients_carbs)
+        val totalCarbsProgress = view.findViewById<ProgressBar>(R.id.progress_macronutrients_carbs)
+        val totalFatsTV = view.findViewById<TextView>(R.id.tv_macronutrients_fats)
+        val totalFatsProgress = view.findViewById<ProgressBar>(R.id.progress_macronutrients_fats)
+
 
         val foodAdapter = foodItemAdapter.getTotalCalories()
 
-        totalCalories.setText(view.context.getString(R.string.calories_format, foodAdapter.calories))
-        totalProtein.text = view.context.getString(R.string.protein_format, foodAdapter.protein)
-        totalCarbs.text = view.context.getString(R.string.carbs_format, foodAdapter.carbs)
-        totalFats.text = view.context.getString(R.string.fats_format, foodAdapter.fats)
+        totalCaloriesTV.text = view.context.getString(R.string.total_calories_format, foodAdapter.calories, caloriesGoal)
+        totalCaloriesProgress.progress = foodAdapter.calories
+        totalCaloriesProgress.max = caloriesGoal
+
+        totalProteinTV.text = view.context.getString(R.string.total_protein_format, foodAdapter.protein, proteinGoal)
+        totalProteinProgress.progress = foodAdapter.protein
+        totalProteinProgress.max = proteinGoal
+
+        totalCarbsTV.text = view.context.getString(R.string.total_carbs_format, foodAdapter.carbs, carbsGoal)
+        totalCarbsProgress.progress = foodAdapter.carbs
+        totalCarbsProgress.max = carbsGoal
+
+        totalFatsTV.text = view.context.getString(R.string.total_fats_format, foodAdapter.fats, fatsGoal)
+        totalFatsProgress.progress = foodAdapter.fats
+        totalFatsProgress.max = fatsGoal
+
     }
 }

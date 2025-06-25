@@ -27,10 +27,10 @@ class FoodItemAdapter(
         fun bind(item: FoodItem) {
 
             view.findViewById<TextView>(R.id.tv_name).text =item.name
-            view.findViewById<TextView>(R.id.tv_calories).text = view.context.getString(R.string.calories_format, item.caloriesPerQuantity)
-            view.findViewById<TextView>(R.id.tv_protein).text = view.context.getString(R.string.protein_format, item.proteinPerQuantity)
-            view.findViewById<TextView>(R.id.tv_carbs).text = view.context.getString(R.string.carbs_format, item.carbsPerQuantity)
-            view.findViewById<TextView>(R.id.tv_fats).text = view.context.getString(R.string.fats_format, item.fatsPerQuantity)
+
+            val summary = view.context.getString(R.string.macro_summary_format, item.caloriesPerQuantity, item.proteinPerQuantity, item.carbsPerQuantity, item.fatsPerQuantity)
+            view.findViewById<TextView>(R.id.tv_macros_summary).text = summary
+
         }
     }
 
