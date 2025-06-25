@@ -10,9 +10,17 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cst.wellnest.R
+import com.cst.wellnest.networking.repository.AuthenticationRepository
+import com.cst.wellnest.utils.extensions.showToast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import java.io.IOException
 
 class RegisterFragment: Fragment() {
     private val args: RegisterFragmentArgs by navArgs()
@@ -38,11 +46,11 @@ class RegisterFragment: Fragment() {
 
         registerButton?.setOnClickListener {
             val email = emailEditText.text.toString()
-            val password = passwordEditText.text.toString()
             Toast.makeText(requireContext(), "Logging in with $email", Toast.LENGTH_SHORT).show()
 
             // Validate email & password
             // Create user
+            doRegister()
 
             goToLogin()
         }
@@ -59,4 +67,34 @@ class RegisterFragment: Fragment() {
     }
 
 
+    private fun doRegister() {
+        val email = view?.findViewById<EditText>(R.id.emailEditText)?.text?.toString()
+        val password = view?.findViewById<EditText>(R.id.passwordEditText)?.text?.toString()
+        val firstName = view?.findViewById<EditText>(R.id.emailEditText)?.text?.toString() // TODO add firstName edit field
+        val lastName = view?.findViewById<EditText>(R.id.emailEditText)?.text?.toString() // TODO add lastName edit field
+
+        if (email.isNullOrEmpty() || password.isNullOrEmpty() || firstName.isNullOrEmpty() || lastName.isNullOrEmpty()) {
+            "Invalid credentials".showToast(requireContext())
+            return
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val result = withContext(Dispatchers.IO) {
+                    AuthenticationRepository.register(email, password, firstName, lastName)
+                }
+
+                if (result.success) {
+                    "Register success!".showToast(requireContext())
+                }
+
+            } catch (e: IOException) {
+                ("Please check your internet connection").showToast(requireContext())
+            } catch (e: HttpException) {
+                ("Server error: ${e.code()}").showToast(requireContext())
+            } catch (e: Exception) {
+                ("Unexpected error: ${e.localizedMessage}").showToast(requireContext())
+            }
+        }
+    }
 }

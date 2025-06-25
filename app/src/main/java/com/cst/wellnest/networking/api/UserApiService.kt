@@ -2,7 +2,6 @@ package com.cst.wellnest.networking.api
 
 import com.cst.wellnest.networking.models.UserListAPIResponseModel
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Query
 
