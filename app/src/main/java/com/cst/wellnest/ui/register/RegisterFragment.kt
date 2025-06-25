@@ -1,5 +1,6 @@
 package com.cst.wellnest.ui.register
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,9 +14,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.cst.wellnest.ApplicationController
 import com.cst.wellnest.R
+import com.cst.wellnest.models.User
+import com.cst.wellnest.networking.models.RegisterAPIRequestModel
 import com.cst.wellnest.networking.repository.AuthenticationRepository
+import com.cst.wellnest.networking.repository.UserRepository
 import com.cst.wellnest.utils.extensions.showToast
+import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -80,14 +86,13 @@ class RegisterFragment: Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             try {
-                val result = withContext(Dispatchers.IO) {
-                    AuthenticationRepository.register(email, password, firstName, lastName)
+                withContext(Dispatchers.IO) {
+                    AuthenticationRepository.register(RegisterAPIRequestModel(email, password, firstName, lastName) )
+                    val userRepository = UserRepository(requireContext().getSharedPreferences("app", Context.MODE_PRIVATE), Gson(), ApplicationController.instance?.appDatabase?.userDao())
+                    userRepository.saveUser(User(email, firstName, lastName))
                 }
 
-                if (result.success) {
-                    "Register success!".showToast(requireContext())
-                }
-
+                "Register success!".showToast(requireContext())
             } catch (e: IOException) {
                 ("Please check your internet connection").showToast(requireContext())
             } catch (e: HttpException) {

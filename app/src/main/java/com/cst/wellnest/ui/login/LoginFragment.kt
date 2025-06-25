@@ -87,10 +87,10 @@ class LoginFragment: Fragment() {
                     AuthenticationRepository.login(email, password)
                 }
 
-                "Login success: ${result.token}".showToast(requireContext())
+                "Login success".showToast(requireContext())
 
                 withContext(Dispatchers.IO) {
-                    SharedPrefsManager.saveAuthToken(result.token)
+                    SharedPrefsManager.saveAuthToken(result.getOrNull()!!.token)
                 }
 
                 goToHome()

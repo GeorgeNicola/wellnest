@@ -1,5 +1,7 @@
 package com.cst.wellnest.networking.models
 
+import com.cst.wellnest.models.User
+
 data class RegisterAPIRequestModel(
     val email: String,
     val password: String,
@@ -8,5 +10,5 @@ data class RegisterAPIRequestModel(
 )
 
 data class RegisterAPIResponseModel(
-    val success: Boolean
+    val user: User
 )
