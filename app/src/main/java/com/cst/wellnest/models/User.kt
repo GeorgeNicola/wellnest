@@ -11,6 +11,7 @@ data class User(
     @ColumnInfo(name = "last_name")
     val lastName: String,
     val email: String,
+    val password: String,
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
 )

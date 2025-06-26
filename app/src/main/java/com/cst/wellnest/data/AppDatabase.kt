@@ -16,7 +16,7 @@ import com.cst.wellnest.models.User
         FoodItem::class,
         FoodItemListByDay::class
     ],
-    version = 3)
+    version = 4)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract val userDao: UserDao

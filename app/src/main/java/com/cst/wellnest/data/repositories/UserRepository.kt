@@ -19,17 +19,10 @@ object UserRepository {
         }
     }
 
-//    suspend fun getUser(): User? = withContext(Dispatchers.IO) {
-//        userDao?.getUser()?.let {
-//            return@withContext User(
-//                email = it.email,
-//                firstName = it.firstName,
-//                lastName = it.lastName
-//            )
-//        }
-//
-//        prefs.getString(KEY_USER, null)?.let {
-//            gson.fromJson(it, User::class.java)
-//        }
-//    }
+    suspend fun authenticate(
+        email: String,
+        password: String
+    ): User? = withContext(Dispatchers.IO) {
+        ApplicationController.instance?.appDatabase?.userDao?.getUserByEmailAndPassword(email, password)
+    }
 }

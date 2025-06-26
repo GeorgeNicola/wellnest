@@ -78,9 +78,10 @@ class RegisterFragment: Fragment() {
             return
         }
         viewLifecycleOwner.lifecycleScope.launch {
-            UserRepository.saveUser(User(email, firstName, lastName))
+            UserRepository.saveUser(User(email, firstName, lastName, password))
             try {
                 withContext(Dispatchers.IO) {
+                    // network credential validation
 //                    AuthenticationRepository.register(RegisterAPIRequestModel(email, password, firstName, lastName) )
                 }
                 "Register success!".showToast(requireContext())
