@@ -3,6 +3,7 @@ package com.cst.wellnest.data.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.cst.wellnest.models.User
 
@@ -21,7 +22,7 @@ interface UserDao {
     @Delete
     fun delete(user: User)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: User)
 
     @Query("SELECT * FROM user ORDER BY id DESC LIMIT 1")

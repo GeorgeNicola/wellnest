@@ -23,8 +23,9 @@ class ApplicationController : Application() {
 
     private fun initDatabase() {
         appDatabase = databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "wellnest"
+            context = this,
+            klass = AppDatabase::class.java,
+            name = "wellnest"
         )
         .fallbackToDestructiveMigration(false)
         .build()
