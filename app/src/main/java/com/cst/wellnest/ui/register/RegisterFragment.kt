@@ -39,6 +39,7 @@ class RegisterFragment: Fragment() {
         val passwordEditText = view.findViewById<EditText>(R.id.passwordEditText)
         val firstNameEditText = view.findViewById<EditText>(R.id.firstNameEditText)
         val lastNameEditText = view.findViewById<EditText>(R.id.lastNameEditText)
+        val passwordConfirmEditText = view.findViewById<EditText>(R.id.passwordConfirmEditText)
         emailEditText.setText(args.email)
 
         val registerButton = view.findViewById<Button>(R.id.registerButton)
@@ -50,14 +51,13 @@ class RegisterFragment: Fragment() {
             // Create user
             val email = emailEditText?.text?.toString()
             Toast.makeText(requireContext(), "Logging in with $email", Toast.LENGTH_SHORT).show()
-            registerButton.setOnClickListener {
-                doRegister(
-                    email,
-                    passwordEditText.text.toString(),
-                    firstNameEditText.text.toString(),
-                    lastNameEditText.text.toString()
-                )
-            }
+            doRegister(
+                email,
+                passwordEditText.text.toString(),
+                passwordConfirmEditText.text.toString(),
+                firstNameEditText.text.toString(),
+                lastNameEditText.text.toString()
+            )
         }
 
         goToLoginButton?.setOnClickListener {
@@ -72,11 +72,17 @@ class RegisterFragment: Fragment() {
     }
 
 
-    private fun doRegister(email: String?, password: String?, firstName: String?, lastName: String?) {
+    private fun doRegister(email: String?, password: String?, passwordConfirm: String?, firstName: String?, lastName: String?) {
         if (email.isNullOrEmpty() || password.isNullOrEmpty() || firstName.isNullOrEmpty() || lastName.isNullOrEmpty()) {
             "Invalid credentials".showToast(requireContext())
             return
         }
+
+        if (password != passwordConfirm) {
+            "Passwords do not match".showToast(requireContext())
+            return
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             UserRepository.saveUser(User(email, firstName, lastName, password))
             try {

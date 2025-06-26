@@ -43,9 +43,7 @@ class LoginFragment: Fragment() {
             Toast.makeText(requireContext(), "Logging in with $email", Toast.LENGTH_SHORT).show()
 
             // Check email & password
-            // Save to local idk
             doLogin()
-
         }
 
         goToRegisterButton?.setOnClickListener {
