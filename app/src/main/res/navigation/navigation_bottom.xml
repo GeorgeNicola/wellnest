@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/nav_pomodoro_fragment"
+    app:startDestination="@id/calorie_counter_fragment"
     android:id="@+id/navigation_bottom"
     >
 
     <fragment
+        android:id="@+id/calorie_counter_search_fragment"
+        android:name="com.cst.wellnest.ui.calorieCounter.CalorieCounterSearchFragment"
+        android:label="Calorie Counter" >
+        <action
+            android:id="@+id/action_calorieCounterSearch_to_calorieCounter"
+            app:destination="@id/calorie_counter_fragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/calorie_counter_fragment"
         android:name="com.cst.wellnest.ui.calorieCounter.CalorieCounterFragment"
-        android:label="Calorie Counter" />
+        android:label="Calorie Counter" >
+        <action
+            android:id="@+id/action_calorieCounter_to_search"
+            app:destination="@id/calorie_counter_search_fragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/nav_pomodoro_fragment"
         android:name="com.cst.wellnest.ui.pomodoro.PomodoroFragment"
