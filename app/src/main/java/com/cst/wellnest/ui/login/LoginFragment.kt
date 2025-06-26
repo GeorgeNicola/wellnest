@@ -15,8 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.cst.wellnest.AppActivity
 import com.cst.wellnest.R
-import com.cst.wellnest.managers.SharedPrefsManager
-import com.cst.wellnest.networking.repository.AuthenticationRepository
+import com.cst.wellnest.data.repositories.UserRepository
 import com.cst.wellnest.utils.extensions.showToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -44,10 +43,7 @@ class LoginFragment: Fragment() {
             Toast.makeText(requireContext(), "Logging in with $email", Toast.LENGTH_SHORT).show()
 
             // Check email & password
-            // Save to local idk
             doLogin()
-
-//            goToMainAppActivity()
         }
 
         goToRegisterButton?.setOnClickListener {
@@ -83,17 +79,24 @@ class LoginFragment: Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             try {
+                val user = UserRepository.authenticate(email, password)
                 val result = withContext(Dispatchers.IO) {
-                    AuthenticationRepository.login(email, password)
+                    // network validation call
+                    // AuthenticationRepository.login(email, password)
                 }
 
-                "Login success".showToast(requireContext())
+                if (user != null) {
+                    "Login successful".showToast(requireContext())
+                    goToMainAppActivity()
+                } else {
+                    "Invalid email or password".showToast(requireContext())
+                }
 
                 withContext(Dispatchers.IO) {
-                    SharedPrefsManager.saveAuthToken(result.getOrNull()!!.token)
+                    // token returned by network call
+                    //SharedPrefsManager.saveAuthToken(result.getOrNull()!!.token)
                 }
 
-                goToMainAppActivity()
             } catch (e: IOException) {
                 ("Please check your internet connection").showToast(requireContext())
             } catch (e: HttpException) {

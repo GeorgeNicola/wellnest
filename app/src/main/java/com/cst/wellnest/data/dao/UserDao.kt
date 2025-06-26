@@ -1,29 +1,26 @@
 package com.cst.wellnest.data.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.cst.wellnest.models.User
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM user")
-    fun getAll(): List<User>
-
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<User>
-
-    @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
-            "last_name LIKE :last LIMIT 1")
-    fun findByName(first: String, last: String): User
-
-    @Delete
-    fun delete(user: User)
-
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: User)
 
-    @Query("SELECT * FROM user ORDER BY uid DESC LIMIT 1")
+    @Query("SELECT * FROM user ORDER BY id DESC LIMIT 1")
     suspend fun getUser(): User?
+
+    @Query("""
+      SELECT * FROM user
+      WHERE email = :email AND password = :password 
+      LIMIT 1
+    """)
+    suspend fun getUserByEmailAndPassword(
+        email: String,
+        password: String
+    ): User?
 }
