@@ -24,7 +24,7 @@ class ApplicationController : Application() {
     private fun initDatabase() {
         appDatabase = databaseBuilder(
             applicationContext,
-            AppDatabase::class.java, "database-name"
+            AppDatabase::class.java, "wellnest"
         ).build()
     }
 

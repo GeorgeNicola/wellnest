@@ -1,4 +1,4 @@
-package com.cst.wellnest.networking.repository
+package com.cst.wellnest.data.repositories
 
 import android.content.SharedPreferences
 import com.cst.wellnest.data.dao.UserDao

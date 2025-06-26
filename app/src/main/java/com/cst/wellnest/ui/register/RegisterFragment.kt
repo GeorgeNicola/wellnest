@@ -17,9 +17,7 @@ import androidx.navigation.fragment.navArgs
 import com.cst.wellnest.ApplicationController
 import com.cst.wellnest.R
 import com.cst.wellnest.models.User
-import com.cst.wellnest.networking.models.RegisterAPIRequestModel
-import com.cst.wellnest.networking.repository.AuthenticationRepository
-import com.cst.wellnest.networking.repository.UserRepository
+import com.cst.wellnest.data.repositories.UserRepository
 import com.cst.wellnest.utils.extensions.showToast
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -87,7 +85,7 @@ class RegisterFragment: Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    AuthenticationRepository.register(RegisterAPIRequestModel(email, password, firstName, lastName) )
+//                    AuthenticationRepository.register(RegisterAPIRequestModel(email, password, firstName, lastName) )
                     val userRepository = UserRepository(requireContext().getSharedPreferences("app", Context.MODE_PRIVATE), Gson(), ApplicationController.instance?.appDatabase?.userDao())
                     userRepository.saveUser(User(email, firstName, lastName))
                 }
