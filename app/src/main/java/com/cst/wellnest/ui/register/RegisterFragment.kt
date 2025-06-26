@@ -74,8 +74,8 @@ class RegisterFragment: Fragment() {
     private fun doRegister() {
         val email = view?.findViewById<EditText>(R.id.emailEditText)?.text?.toString()
         val password = view?.findViewById<EditText>(R.id.passwordEditText)?.text?.toString()
-        val firstName = view?.findViewById<EditText>(R.id.emailEditText)?.text?.toString() // TODO add firstName edit field
-        val lastName = view?.findViewById<EditText>(R.id.emailEditText)?.text?.toString() // TODO add lastName edit field
+        val firstName = view?.findViewById<EditText>(R.id.firstNameEditText)?.text?.toString()
+        val lastName = view?.findViewById<EditText>(R.id.lastNameEditText)?.text?.toString()
 
         if (email.isNullOrEmpty() || password.isNullOrEmpty() || firstName.isNullOrEmpty() || lastName.isNullOrEmpty()) {
             "Invalid credentials".showToast(requireContext())
@@ -86,8 +86,7 @@ class RegisterFragment: Fragment() {
             try {
                 withContext(Dispatchers.IO) {
 //                    AuthenticationRepository.register(RegisterAPIRequestModel(email, password, firstName, lastName) )
-                    val userRepository = UserRepository(requireContext().getSharedPreferences("app", Context.MODE_PRIVATE), Gson(), ApplicationController.instance?.appDatabase?.userDao())
-                    userRepository.saveUser(User(email, firstName, lastName))
+                    UserRepository.saveUser(User(email, firstName, lastName))
                 }
 
                 "Register success!".showToast(requireContext())

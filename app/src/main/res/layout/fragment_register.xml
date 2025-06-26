@@ -13,13 +13,31 @@
         android:gravity="center">
 
         <EditText
+            android:id="@+id/firstNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:autofillHints="emailAddress"
+            android:hint="@string/firstName"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/lastNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:autofillHints="emailAddress"
+            android:hint="@string/lastName"
+            android:inputType="text" />
+
+        <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:autofillHints="emailAddress"
             android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="16dp" />
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/passwordEditText"
