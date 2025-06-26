@@ -1,7 +1,6 @@
 package com.cst.wellnest.data.repositories
 
 import com.cst.wellnest.ApplicationController
-import com.cst.wellnest.data.dao.FoodItemDao
 import com.cst.wellnest.models.FoodItem
 
 object FoodItemRepository {
