@@ -12,16 +12,30 @@
         android:padding="24dp"
         android:gravity="center">
 
-        <TextView
-            android:id="@+id/goToRegisterText"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/firstNameEditText2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/profile_fragment_title"
-            android:textColor="@android:color/primary_text_light"
-            android:textSize="16sp"
-            android:layout_marginTop="24dp"
-            android:clickable="true"
-            android:focusable="true" />
+            android:layout_marginBottom="16dp"
+            android:autofillHints="emailAddress"
+            android:hint="@string/firstName"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/lastNameEditText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:autofillHints="emailAddress"
+            android:hint="@string/lastName"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/registerButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:textAllCaps="true" />
 
     </LinearLayout>
 

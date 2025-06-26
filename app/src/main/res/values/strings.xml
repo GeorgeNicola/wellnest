@@ -26,6 +26,7 @@
     <string name="confirm_password">Confirm password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="save">Save</string>
     <string name="login_fragment_register_button">Don\'t have an account? Register</string>
     <string name="register_fragment_login_button">Already have an account? Login</string>
 
