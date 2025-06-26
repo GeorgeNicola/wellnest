@@ -84,7 +84,7 @@ class RegisterFragment: Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            UserRepository.saveUser(User(email, firstName, lastName, password))
+            UserRepository.saveUser(User(firstName, lastName, email, password))
             try {
                 withContext(Dispatchers.IO) {
                     // network credential validation
