@@ -49,20 +49,20 @@ class RegisterFragment: Fragment() {
 
 
         registerButton?.setOnClickListener {
-            val email = emailEditText.text.toString()
-            Toast.makeText(requireContext(), "Logging in with $email", Toast.LENGTH_SHORT).show()
+//            val email = emailEditText.text.toString()
+//            Toast.makeText(requireContext(), "Logging in with $email", Toast.LENGTH_SHORT).show()
 
             // Validate email & password
             // Create user
             doRegister()
 
-            goToLogin()
+//            goToLogin()
         }
 
-        goToLoginButton?.setOnClickListener {
-            Toast.makeText(requireContext(), "Navigate to Login Screen", Toast.LENGTH_SHORT).show()
-            goToLogin()
-        }
+//        goToLoginButton?.setOnClickListener {
+//            Toast.makeText(requireContext(), "Navigate to Login Screen", Toast.LENGTH_SHORT).show()
+//            goToLogin()
+//        }
     }
 
     private fun goToLogin() {
@@ -90,6 +90,8 @@ class RegisterFragment: Fragment() {
                 }
 
                 "Register success!".showToast(requireContext())
+
+                goToLogin()
             } catch (e: IOException) {
                 ("Please check your internet connection").showToast(requireContext())
             } catch (e: HttpException) {

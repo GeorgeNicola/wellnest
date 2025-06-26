@@ -47,7 +47,7 @@ class LoginFragment: Fragment() {
             // Save to local idk
             doLogin()
 
-            goToMainAppActivity()
+//            goToMainAppActivity()
         }
 
         goToRegisterButton?.setOnClickListener {
@@ -93,7 +93,7 @@ class LoginFragment: Fragment() {
                     SharedPrefsManager.saveAuthToken(result.getOrNull()!!.token)
                 }
 
-                goToHome()
+                goToMainAppActivity()
             } catch (e: IOException) {
                 ("Please check your internet connection").showToast(requireContext())
             } catch (e: HttpException) {
