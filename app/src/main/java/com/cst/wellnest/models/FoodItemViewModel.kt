@@ -9,12 +9,9 @@ class FoodItemViewModel : ViewModel() {
     private val _foodItems = MutableLiveData<List<FoodItem>>()
     val foodItems: LiveData<List<FoodItem>> = _foodItems
 
-
-    fun setFoodItemsList (newFoodItems: List<FoodItem>) {
-        _foodItems.value = newFoodItems
-    }
-
     fun addItem(foodItem: FoodItem) {
+        println("FoodItemViewModel - addItem")
+        println(foodItem)
         val currentList = _foodItems.value ?: emptyList()
         _foodItems.value = currentList + foodItem
     }
@@ -33,22 +30,6 @@ class FoodItemViewModel : ViewModel() {
         }
         println("Changed list")
         println(foodItems.value)
-    }
-
-    fun setDummyData() {
-        val items = mutableListOf(
-            FoodItem("Bread", 110, 20, 0, 2, 100),
-            FoodItem("Chicken Breast", 110, 20, 0, 2, 200),
-            FoodItem("Beef", 110, 20, 0, 2, 100),
-            FoodItem("Potatoes", 110, 20, 0, 2, 100),
-            FoodItem("Pepper", 110, 20, 0, 2, 100),
-            FoodItem("Tomato", 110, 20, 0, 2, 100),
-            FoodItem("Eggplant", 110, 20, 0, 2, 100),
-            FoodItem("Eggs", 110, 20, 0, 2, 100),
-            FoodItem("Chicken Thigh", 110, 20, 0, 2, 100),
-            FoodItem("Chicken wings", 120, 20, 0, 2, 100))
-
-        _foodItems.setValue(items)
     }
 
     fun getTotalCalories(): FoodItem {

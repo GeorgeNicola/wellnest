@@ -42,11 +42,14 @@ class CalorieCounterFragment(): Fragment() {
     private fun initClickActions(view: View) {
         val btnSearch = view.findViewById<Button>(R.id.btn_add_food_item)
         btnSearch.setOnClickListener {
-            // Navigate to search fragment
-            findNavController().navigate(
-                R.id.action_calorieCounter_to_search
-            )
+            navigateToCalorieCounterSearch()
         }
+    }
+
+    private fun navigateToCalorieCounterSearch() {
+        findNavController().navigate(
+            R.id.action_calorieCounter_to_search
+        )
     }
 
     private fun initFoodAdapter(view: View) {
@@ -54,13 +57,11 @@ class CalorieCounterFragment(): Fragment() {
         recyclerView.adapter = foodItemAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        foodItemsViewModel.foodItems.observe(viewLifecycleOwner) { results ->
+        foodItemsViewModel.foodItems.observe(viewLifecycleOwner) { updatedList ->
             println("List Updated")
-            println(results)
-            foodItemAdapter.setFoods(results)
+            println(updatedList)
+            foodItemAdapter.setFoods(updatedList)
         }
-
-        foodItemsViewModel.setDummyData()
     }
 
     private fun initTotalMacronutrientsSection(view: View) {

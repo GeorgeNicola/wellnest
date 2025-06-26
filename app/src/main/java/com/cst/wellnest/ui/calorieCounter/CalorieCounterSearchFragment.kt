@@ -15,13 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cst.wellnest.R
 import com.cst.wellnest.adapters.FoodItemAdapter
+import com.cst.wellnest.adapters.FoodItemSearchAdapter
 import com.cst.wellnest.models.FoodItem
 import com.cst.wellnest.models.FoodItemViewModel
 
 class CalorieCounterSearchFragment(): Fragment() {
     private val foodItemsViewModel: FoodItemViewModel by activityViewModels()
-    private val foodItemAdapter: FoodItemAdapter = FoodItemAdapter(onDeleteClick = { position ->
-        foodItemsViewModel.removeItem(position)
+    private val foodItemSearchAdapter: FoodItemSearchAdapter = FoodItemSearchAdapter(onAddClick = { item ->
+        foodItemsViewModel.addItem(item)
+        navigateToCalorieCounterFragment()
     })
 
     override fun onCreateView(
@@ -40,20 +42,21 @@ class CalorieCounterSearchFragment(): Fragment() {
     private fun initClickActions(view: View) {
         val btnSearch = view.findViewById<Button>(R.id.btn_search)
         btnSearch.setOnClickListener {
-            // Navigate to calorie counter fragment
-            findNavController().navigate(
-                R.id.action_calorieCounterSearch_to_calorieCounter
-            )
+            navigateToCalorieCounterFragment()
         }
+    }
+
+    private fun navigateToCalorieCounterFragment() {
+        findNavController().navigate(
+            R.id.action_calorieCounterSearch_to_calorieCounter
+        )
     }
 
     private fun initFoodAdapter(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_search_results)
-        recyclerView.adapter = foodItemAdapter
+        recyclerView.adapter = foodItemSearchAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        foodItemsViewModel.foodItems.observe(viewLifecycleOwner) { results ->
-            foodItemAdapter.setFoods(results)
-        }
+        foodItemSearchAdapter.setDefaultFoodList()
     }
 }
