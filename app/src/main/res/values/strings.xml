@@ -53,5 +53,8 @@
     <string name="total_fats_format">Fats: %1$dg / %2$dg</string>
     <string name="macro_summary_format">%1$d kcal | P: %2$dg | C: %3$dg | F: %4$dg</string>
 
+    <!-- Pomodoro -->
+    <string name="start">Start</string>
+    <string name="reset">Reset</string>
 
 </resources>
