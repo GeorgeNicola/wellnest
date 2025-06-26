@@ -1,74 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:padding="5dp"-->
-<!--    android:background="@color/primary"-->
-<!--    >-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tv_name"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:text="Chicken Breast"-->
-<!--        android:textStyle="bold"-->
-<!--        android:textSize="16sp"-->
-<!--        android:textColor="@android:color/black"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toStartOf="@id/tv_calories"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        app:layout_constraintWidth_percent="0.3" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tv_calories"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:text="200 cal"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@id/tv_name"-->
-<!--        app:layout_constraintEnd_toStartOf="@id/tv_protein"-->
-<!--        android:layout_marginEnd="8dp" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tv_protein"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:text="P: 30g"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@id/tv_protein"-->
-<!--        app:layout_constraintEnd_toStartOf="@id/tv_carbs"-->
-<!--        android:layout_marginEnd="8dp" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tv_carbs"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:text="C: 0g"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@id/tv_carbs"-->
-<!--        app:layout_constraintEnd_toStartOf="@id/tv_fats"-->
-<!--        android:layout_marginEnd="8dp" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tv_fats"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:text="F: 5g"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@id/tv_fats" />-->
-
-
-<!--</LinearLayout>-->
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -97,7 +27,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_delete"
-            app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0"
             android:maxLines="1"
             android:ellipsize="end"/>

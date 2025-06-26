@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         // If user is detected => goToMainAppActivity()
         // Else => goToControllerActivity()
 
-        initControllerActivity()
+        initAppActivity()
     }
 
 
