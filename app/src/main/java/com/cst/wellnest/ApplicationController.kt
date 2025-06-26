@@ -25,7 +25,9 @@ class ApplicationController : Application() {
         appDatabase = databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "wellnest"
-        ).build()
+        )
+        .fallbackToDestructiveMigration(false)
+        .build()
     }
 
     val sharedPrefs: SharedPreferences by lazy {

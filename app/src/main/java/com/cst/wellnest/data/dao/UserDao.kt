@@ -11,7 +11,7 @@ interface UserDao {
     @Query("SELECT * FROM user")
     fun getAll(): List<User>
 
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
+    @Query("SELECT * FROM user WHERE id IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): List<User>
 
     @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
@@ -24,6 +24,6 @@ interface UserDao {
     @Insert
     suspend fun insert(user: User)
 
-    @Query("SELECT * FROM user ORDER BY uid DESC LIMIT 1")
+    @Query("SELECT * FROM user ORDER BY id DESC LIMIT 1")
     suspend fun getUser(): User?
 }
