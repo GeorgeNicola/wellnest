@@ -36,25 +36,28 @@ class RegisterFragment: Fragment() {
         Log.e("TAG","onViewCreated - RegisterFragment")
 
         val emailEditText = view.findViewById<EditText>(R.id.emailEditText)
+        val passwordEditText = view.findViewById<EditText>(R.id.passwordEditText)
+        val firstNameEditText = view.findViewById<EditText>(R.id.firstNameEditText)
+        val lastNameEditText = view.findViewById<EditText>(R.id.lastNameEditText)
         emailEditText.setText(args.email)
 
         val registerButton = view.findViewById<Button>(R.id.registerButton)
         val goToLoginButton = view.findViewById<TextView>(R.id.goToLoginText)
 
-        val email = emailEditText?.text?.toString()
-        val password = view.findViewById<EditText>(R.id.passwordEditText)?.text?.toString()
-        val firstName = view.findViewById<EditText>(R.id.firstNameEditText)?.text?.toString()
-        val lastName = view.findViewById<EditText>(R.id.lastNameEditText)?.text?.toString()
-
 
         registerButton?.setOnClickListener {
-            Toast.makeText(requireContext(), "Logging in with $email", Toast.LENGTH_SHORT).show()
-
             // Validate email & password
             // Create user
-            doRegister(email, password, firstName, lastName)
-
-            goToLogin()
+            val email = emailEditText?.text?.toString()
+            Toast.makeText(requireContext(), "Logging in with $email", Toast.LENGTH_SHORT).show()
+            registerButton.setOnClickListener {
+                doRegister(
+                    email,
+                    passwordEditText.text.toString(),
+                    firstNameEditText.text.toString(),
+                    lastNameEditText.text.toString()
+                )
+            }
         }
 
         goToLoginButton?.setOnClickListener {
@@ -75,12 +78,13 @@ class RegisterFragment: Fragment() {
             return
         }
         viewLifecycleOwner.lifecycleScope.launch {
-            UserRepository.saveUser(User(email, firstName, lastName,44))
+            UserRepository.saveUser(User(email, firstName, lastName))
             try {
                 withContext(Dispatchers.IO) {
 //                    AuthenticationRepository.register(RegisterAPIRequestModel(email, password, firstName, lastName) )
                 }
                 "Register success!".showToast(requireContext())
+                goToLogin()
             } catch (e: IOException) {
                 ("Please check your internet connection").showToast(requireContext())
             } catch (e: HttpException) {
