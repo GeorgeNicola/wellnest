@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -37,13 +38,38 @@ class CalorieCounterFragment(): Fragment() {
         initClickActions(view)
         initFoodAdapter(view)
         initTotalMacronutrientsSection(view)
+
+        initData()
+    }
+
+    private fun initData() {
+        println("initData")
+        foodItemsViewModel.setDateToday()
+        foodItemsViewModel.getItems()
     }
 
     private fun initClickActions(view: View) {
-        val btnSearch = view.findViewById<Button>(R.id.btn_add_food_item)
-        btnSearch.setOnClickListener {
+        val btnAddFood = view.findViewById<Button>(R.id.btn_add_food_item)
+        val dayText = view.findViewById<TextView>(R.id.tv_day_selector)
+        val btnGoToNextDay = view.findViewById<ImageButton>(R.id.btn_day_selector_next_day)
+        val btnGoToPrevDay = view.findViewById<ImageButton>(R.id.btn_day_selector_prev_day)
+
+        dayText.setText(foodItemsViewModel.getFormattedDate().toString())
+
+        btnGoToNextDay.setOnClickListener {
+            foodItemsViewModel.goToNextDay()
+            dayText.setText(foodItemsViewModel.getFormattedDate().toString())
+        }
+
+        btnGoToPrevDay.setOnClickListener {
+            foodItemsViewModel.goToPreviousDay()
+            dayText.setText(foodItemsViewModel.getFormattedDate().toString())
+        }
+
+        btnAddFood.setOnClickListener {
             navigateToCalorieCounterSearch()
         }
+
     }
 
     private fun navigateToCalorieCounterSearch() {
@@ -58,8 +84,6 @@ class CalorieCounterFragment(): Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         foodItemsViewModel.foodItems.observe(viewLifecycleOwner) { updatedList ->
-            println("List Updated")
-            println(updatedList)
             foodItemAdapter.setFoods(updatedList)
         }
     }

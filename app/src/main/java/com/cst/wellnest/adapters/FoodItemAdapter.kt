@@ -46,8 +46,9 @@ class FoodItemAdapter(
     }
 
     fun setFoods(items: List<FoodItem>) {
+        this.items.clear()
         this.items.addAll(items)
-        notifyItemInserted(items.size)
+        notifyDataSetChanged()
     }
 
     private fun handleOnDeleteClick(position: Int) {

@@ -4,7 +4,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.cst.wellnest.models.FoodItem
 import com.cst.wellnest.models.FoodItemListByDay
+import java.util.Date
 
 @Dao
 interface FoodItemListByDayDao {
@@ -13,4 +15,14 @@ interface FoodItemListByDayDao {
 
     @Query("SELECT * FROM food_item_list_by_day")
     fun getAll(): List<FoodItemListByDay>
+
+    @Query("""
+        SELECT f.* FROM food_item f
+        INNER JOIN food_item_list_by_day l ON f.id = l.food_id
+        WHERE l.user_id = :userId AND DATE(l.selection_date) = DATE(:date)
+    """)
+    suspend fun getFoodItemsForUserOnDate(
+        userId: Int,
+        date: Date
+    ): List<FoodItem>
 }
