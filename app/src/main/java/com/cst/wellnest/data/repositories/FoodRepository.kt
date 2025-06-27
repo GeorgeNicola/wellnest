@@ -38,4 +38,11 @@ object FoodRepository {
             ?.foodItemListByDayDao
             ?.getFoodItemsForUserOnDate(userId, date.toString())
     }
+
+    suspend fun deleteFoodItemById(foodItemId: Long) {
+        ApplicationController.instance
+            ?.appDatabase
+            ?.foodItemDao
+            ?.deleteFoodItemById(foodItemId)
+    }
 }

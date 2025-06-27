@@ -11,7 +11,7 @@ import com.cst.wellnest.models.FoodItem
 
 class FoodItemAdapter(
     private val items: MutableList<FoodItem> = mutableListOf(),
-    private val onDeleteClick: (position: Int) -> Unit
+    private val onDeleteClickById: (id: Long) -> Unit
 ): RecyclerView.Adapter<FoodItemAdapter.FoodViewHolder>() {
     override fun getItemCount() = items.size
 
@@ -28,7 +28,7 @@ class FoodItemAdapter(
         holder.name.text = item.name
 
         holder.btnDelete.setOnClickListener {
-            handleOnDeleteClick(position)
+            handleOnDeleteClick(item.id, position)
         }
     }
 
@@ -51,8 +51,8 @@ class FoodItemAdapter(
         notifyDataSetChanged()
     }
 
-    private fun handleOnDeleteClick(position: Int) {
-        onDeleteClick(position)
+    private fun handleOnDeleteClick(id: Long, position: Int) {
+        onDeleteClickById(id)
         notifyItemRemoved(position)
     }
 }

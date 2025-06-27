@@ -17,8 +17,6 @@ class FoodItemViewModel : ViewModel() {
     private val _foodItems = MutableLiveData<List<FoodItem>>()
     val foodItems: LiveData<List<FoodItem>> = _foodItems
 
-
-    // Date + methods
     private val _selectedDate = MutableLiveData<LocalDate>(LocalDate.now())
     val selectedDate: LiveData<LocalDate> = _selectedDate
 
@@ -103,7 +101,18 @@ class FoodItemViewModel : ViewModel() {
         }
     }
 
-    fun getItems() {
+    fun deleteFoodItem(foodItemId: Long) {
+        viewModelScope.launch {
+            try {
+                FoodRepository.deleteFoodItemById(foodItemId)
+                getItems()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun getItems(callback: () -> Unit = {}) {
         viewModelScope.launch {
             val userId = 1
             val localDate = _selectedDate.value ?: LocalDate.now()
@@ -121,6 +130,9 @@ class FoodItemViewModel : ViewModel() {
             println(userId)
             println(sqlDate)
             println(items)
+
+            callback()
+
         }
-  }
+    }
 }

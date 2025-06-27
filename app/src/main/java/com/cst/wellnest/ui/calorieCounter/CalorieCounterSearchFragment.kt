@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -40,8 +41,8 @@ class CalorieCounterSearchFragment(): Fragment() {
     }
 
     private fun initClickActions(view: View) {
-        val btnSearch = view.findViewById<Button>(R.id.btn_search)
-        btnSearch.setOnClickListener {
+        val backBtn = view.findViewById<ImageView>(R.id.back_button)
+        backBtn.setOnClickListener {
             navigateToCalorieCounterFragment()
         }
     }

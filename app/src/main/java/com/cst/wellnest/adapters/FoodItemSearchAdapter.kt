@@ -51,16 +51,35 @@ class FoodItemSearchAdapter(
 
     fun setDefaultFoodList() {
         val items = mutableListOf(
-            FoodItem("Bread", 110, 20, 0, 2, 100),
-            FoodItem("Chicken Breast", 110, 20, 0, 2, 200),
-            FoodItem("Beef", 110, 20, 0, 2, 100),
-            FoodItem("Potatoes", 110, 20, 0, 2, 100),
-            FoodItem("Pepper", 110, 20, 0, 2, 100),
-            FoodItem("Tomato", 110, 20, 0, 2, 100),
-            FoodItem("Eggplant", 110, 20, 0, 2, 100),
-            FoodItem("Eggs", 110, 20, 0, 2, 100),
-            FoodItem("Chicken Thigh", 110, 20, 0, 2, 100),
-            FoodItem("Chicken wings", 120, 20, 0, 2, 100))
+            FoodItem("Bread", 265, 9, 49, 3, 100),
+            FoodItem("Chicken Breast", 165, 31, 0, 4, 200),
+            FoodItem("Beef", 250, 26, 0, 15, 100),
+            FoodItem("Potatoes", 87, 2, 20, 0, 100),
+            FoodItem("Pepper", 31, 1, 6, 0, 100),
+            FoodItem("Tomato", 18, 1, 4, 0, 100),
+            FoodItem("Eggplant", 25, 1, 6, 0, 100),
+            FoodItem("Eggs", 143, 13, 1, 10, 100),
+            FoodItem("Chicken Thigh", 209, 25, 0, 11, 100),
+            FoodItem("Chicken Wings", 203, 30, 0, 8, 100),
+            FoodItem("Rice (white, cooked)", 130, 2, 28, 0, 100),
+            FoodItem("Pasta (cooked)", 131, 5, 25, 1, 100),
+            FoodItem("Apple", 52, 0, 14, 0, 100),
+            FoodItem("Banana", 89, 1, 23, 0, 100),
+            FoodItem("Broccoli", 34, 3, 7, 0, 100),
+            FoodItem("Carrot", 41, 1, 10, 0, 100),
+            FoodItem("Cheddar Cheese", 402, 25, 1, 33, 100),
+            FoodItem("Almonds", 579, 21, 22, 50, 100),
+            FoodItem("Salmon", 208, 20, 0, 13, 100),
+            FoodItem("Milk (whole)", 61, 3, 5, 3, 100),
+            FoodItem("Yogurt (plain, low-fat)", 59, 10, 3, 0, 100),
+            FoodItem("Avocado", 160, 2, 9, 15, 100),
+            FoodItem("Oats (dry)", 389, 17, 66, 7, 100),
+            FoodItem("Peanut Butter", 588, 25, 20, 50, 100),
+            FoodItem("Cucumber", 16, 1, 4, 0, 100),
+            FoodItem("Spinach", 23, 3, 4, 0, 100),
+            FoodItem("Lentils (boiled)", 116, 9, 20, 0, 100)
+        )
+
 
         this.items.addAll(items)
         notifyItemInserted(items.size)

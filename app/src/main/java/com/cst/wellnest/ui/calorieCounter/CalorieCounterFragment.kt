@@ -22,9 +22,11 @@ import com.cst.wellnest.models.FoodItemViewModel
 
 class CalorieCounterFragment(): Fragment() {
     private val foodItemsViewModel: FoodItemViewModel by activityViewModels()
-    private val foodItemAdapter: FoodItemAdapter = FoodItemAdapter(onDeleteClick = { position ->
-        foodItemsViewModel.removeItem(position)
-    })
+    private val foodItemAdapter: FoodItemAdapter = FoodItemAdapter(
+        onDeleteClickById = { id ->
+            foodItemsViewModel.deleteFoodItem(id)
+        }
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,11 +41,13 @@ class CalorieCounterFragment(): Fragment() {
         initFoodAdapter(view)
         initTotalMacronutrientsSection(view)
 
-        initData()
+        initData(view)
     }
 
-    private fun initData() {
-        foodItemsViewModel.getItems()
+    private fun initData(view: View) {
+        foodItemsViewModel.getItems {
+            initTotalMacronutrientsSection(view)
+        }
     }
 
     private fun initClickActions(view: View) {
@@ -65,7 +69,9 @@ class CalorieCounterFragment(): Fragment() {
         }
 
         foodItemsViewModel.selectedDate.observe(viewLifecycleOwner) {
-            foodItemsViewModel.getItems()
+            foodItemsViewModel.getItems {
+                initTotalMacronutrientsSection(view)
+            }
         }
 
         btnAddFood.setOnClickListener {

@@ -38,6 +38,7 @@
     <string name="activity_fragment_title">ACTIVITY Fragment</string>
     <string name="profile_fragment_title">PROFILE Fragment</string>
     <string name="calorie_tracker_fragment_title">Calorie Tracker</string>"
+    <string name="calorie_tracker_search_fragment_title">Select foods</string>
 
 
 
