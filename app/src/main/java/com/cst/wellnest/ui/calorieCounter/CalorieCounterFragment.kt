@@ -45,9 +45,8 @@ class CalorieCounterFragment(): Fragment() {
     }
 
     private fun initData(view: View) {
-        foodItemsViewModel.getItems {
-            initTotalMacronutrientsSection(view)
-        }
+        foodItemsViewModel.getItems()
+        initTotalMacronutrientsSection(view)
     }
 
     private fun initClickActions(view: View) {
@@ -69,9 +68,9 @@ class CalorieCounterFragment(): Fragment() {
         }
 
         foodItemsViewModel.selectedDate.observe(viewLifecycleOwner) {
-            foodItemsViewModel.getItems {
-                initTotalMacronutrientsSection(view)
-            }
+            foodItemsViewModel.getItems()
+
+            initTotalMacronutrientsSection(view)
         }
 
         btnAddFood.setOnClickListener {
@@ -93,6 +92,7 @@ class CalorieCounterFragment(): Fragment() {
 
         foodItemsViewModel.foodItems.observe(viewLifecycleOwner) { updatedList ->
             foodItemAdapter.setFoods(updatedList)
+            initTotalMacronutrientsSection(view)
         }
     }
 

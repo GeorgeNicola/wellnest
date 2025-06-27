@@ -37,7 +37,6 @@ class FoodItemViewModel : ViewModel() {
         _selectedDate.value = current.minusDays(1)
     }
 
-
     fun addItem(foodItem: FoodItem) {
         println("FoodItemViewModel - addItem")
         println(foodItem)
@@ -45,22 +44,6 @@ class FoodItemViewModel : ViewModel() {
         _foodItems.value = currentList + foodItem
 
         saveItemForDay(foodItem)
-    }
-
-    fun removeItem(position: Int) {
-        println("Removed from pos")
-        println(position)
-
-        println("Initial List")
-        println(foodItems.value)
-        "Remove Item" + position.toString().logErrorMessage()
-        val currentList = _foodItems.value?.toMutableList() ?: return
-        if (position in currentList.indices) {
-            currentList.removeAt(position)
-            _foodItems.value = currentList
-        }
-        println("Changed list")
-        println(foodItems.value)
     }
 
     fun getTotalCalories(): FoodItem {
@@ -112,7 +95,7 @@ class FoodItemViewModel : ViewModel() {
         }
     }
 
-    fun getItems(callback: () -> Unit = {}) {
+    fun getItems() {
         viewModelScope.launch {
             val userId = 1
             val localDate = _selectedDate.value ?: LocalDate.now()
@@ -130,9 +113,6 @@ class FoodItemViewModel : ViewModel() {
             println(userId)
             println(sqlDate)
             println(items)
-
-            callback()
-
         }
     }
 }
