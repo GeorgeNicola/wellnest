@@ -32,4 +32,17 @@ interface UserDao {
     suspend fun getUserByEmail(
         email: String
     ): User?
+
+    /** Update first/last name by email */
+    @Query("""
+    UPDATE user
+      SET first_Name = :firstName,
+          last_Name  = :lastName
+    WHERE email = :email
+  """)
+    suspend fun updateNameByEmail(
+        email: String,
+        firstName: String,
+        lastName: String
+    ): Int
 }
