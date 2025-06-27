@@ -55,5 +55,12 @@
     <!-- Pomodoro -->
     <string name="start">Start</string>
     <string name="reset">Reset</string>
+    <string name="set_duration_title">Set Duration</string>
+    <string name="minutes_hint">Minutes</string>
+    <string name="seconds_hint">Seconds</string>
+    <string name="time_separator">:</string>
+    <string name="dialog_button_ok">OK</string>
+    <string name="dialog_button_cancel">Cancel</string>
+    <string name="timer_content_description">Current timer duration</string>
 
 </resources>

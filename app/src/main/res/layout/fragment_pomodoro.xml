@@ -11,6 +11,8 @@
         android:id="@+id/timerCardView"
         android:layout_width="250dp"
         android:layout_height="250dp"
+        android:clickable="true"
+        android:focusable="true"
         app:cardBackgroundColor="@color/surface"
         app:cardCornerRadius="125dp"
         app:strokeColor="@color/secondary"
@@ -29,7 +31,8 @@
             android:textColor="@color/text_primary"
             android:textSize="60sp"
             android:textStyle="bold"
-            tools:text="25:00" />
+            tools:text="25:00"
+            android:contentDescription="@string/timer_content_description" />
 
     </com.google.android.material.card.MaterialCardView>
 
