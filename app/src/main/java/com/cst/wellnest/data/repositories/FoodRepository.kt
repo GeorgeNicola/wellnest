@@ -10,14 +10,14 @@ object FoodRepository {
     suspend fun insertFoodAndLinkToDate(
         foodItem: FoodItem,
         userId: Int,
-        date: Date
+        date: LocalDate
     ): Boolean {
         val foodId = FoodItemRepository.insertFoodItem(foodItem)?.toInt() ?: return false
 
         val entry = FoodItemListByDay(
             userId = userId,
             foodId = foodId,
-            selectionDate = Date.valueOf(date.toString())
+            selectionDate = date.toString()
         )
         val entryId = FoodItemListByDayRepository.insertEntry(entry)
         return entryId != null
@@ -25,7 +25,7 @@ object FoodRepository {
 
     suspend fun getFoodItemsForUserOnDate(
         userId: Int,
-        date: Date
+        date: LocalDate
     ): List<FoodItem>? {
         println("FoodRepository - getFoodItemsForUserOnDate")
         println("date")
@@ -36,6 +36,6 @@ object FoodRepository {
         return ApplicationController.instance
             ?.appDatabase
             ?.foodItemListByDayDao
-            ?.getFoodItemsForUserOnDate(userId, Date.valueOf(date.toString()))
+            ?.getFoodItemsForUserOnDate(userId, date.toString())
     }
 }

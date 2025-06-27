@@ -18,11 +18,11 @@ interface FoodItemListByDayDao {
 
     @Query("""
         SELECT f.* FROM food_item f
-        INNER JOIN food_item_list_by_day l ON f.id = l.food_id
-        WHERE l.user_id = :userId AND DATE(l.selection_date) = DATE(:date)
+        JOIN   food_item_list_by_day l ON f.id = l.food_id
+        WHERE  l.user_id = :userId AND l.selection_date = :date
     """)
     suspend fun getFoodItemsForUserOnDate(
         userId: Int,
-        date: Date
+        date: String
     ): List<FoodItem>
 }

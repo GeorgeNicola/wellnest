@@ -43,8 +43,6 @@ class CalorieCounterFragment(): Fragment() {
     }
 
     private fun initData() {
-        println("initData")
-        foodItemsViewModel.setDateToday()
         foodItemsViewModel.getItems()
     }
 
@@ -64,6 +62,10 @@ class CalorieCounterFragment(): Fragment() {
         btnGoToPrevDay.setOnClickListener {
             foodItemsViewModel.goToPreviousDay()
             dayText.setText(foodItemsViewModel.getFormattedDate().toString())
+        }
+
+        foodItemsViewModel.selectedDate.observe(viewLifecycleOwner) {
+            foodItemsViewModel.getItems()
         }
 
         btnAddFood.setOnClickListener {

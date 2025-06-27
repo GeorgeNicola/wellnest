@@ -19,7 +19,7 @@ class FoodItemViewModel : ViewModel() {
 
 
     // Date + methods
-    private val _selectedDate = MutableLiveData<LocalDate>()
+    private val _selectedDate = MutableLiveData<LocalDate>(LocalDate.now())
     val selectedDate: LiveData<LocalDate> = _selectedDate
 
     fun getFormattedDate(): String {
@@ -85,7 +85,7 @@ class FoodItemViewModel : ViewModel() {
 
     private fun saveItemForDay(foodItem: FoodItem){
         viewModelScope.launch {
-            val userId = 4
+            val userId = 1
             val localDate = _selectedDate.value ?: LocalDate.now()
             val utilsDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
             val sqlDate = java.sql.Date(utilsDate.time)
@@ -93,7 +93,7 @@ class FoodItemViewModel : ViewModel() {
             FoodRepository.insertFoodAndLinkToDate(
                 foodItem,
                 userId,
-                sqlDate
+                localDate
             )
 
             println("FoodItemViewModel - saveItemForDay")
@@ -105,7 +105,7 @@ class FoodItemViewModel : ViewModel() {
 
     fun getItems() {
         viewModelScope.launch {
-            val userId = 4
+            val userId = 1
             val localDate = _selectedDate.value ?: LocalDate.now()
             val utilsDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
             val sqlDate = java.sql.Date(utilsDate.time)
@@ -113,7 +113,7 @@ class FoodItemViewModel : ViewModel() {
 
             val items = FoodRepository.getFoodItemsForUserOnDate(
                 userId,
-                sqlDate
+                localDate
             ) ?: emptyList()
             _foodItems.postValue(items)
 
