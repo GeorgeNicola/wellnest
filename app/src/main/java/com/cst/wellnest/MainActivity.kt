@@ -6,10 +6,18 @@ import android.util.Log
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
+import com.cst.wellnest.managers.SharedPrefsManager
+import com.cst.wellnest.managers.isUserLoggedIn
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+    private var isAppInitialized = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +34,21 @@ class MainActivity : AppCompatActivity() {
             Log.e("TAG","setOnClickListener")
         }
 
-        // TO DO:
-        // If user is detected => goToMainAppActivity()
-        // Else => goToControllerActivity()
-
-        initControllerActivity()
+        tryToAuthUser()
     }
 
+    private fun tryToAuthUser() {
+        lifecycleScope.launch {
+            delay(3000)
+
+            when (SharedPrefsManager.isUserLoggedIn()) {
+                true -> initAppActivity()
+                false -> initControllerActivity()
+            }
+
+            isAppInitialized = true
+        }
+    }
 
     private fun initControllerActivity() {
         val intent = Intent(this, AuthActivity::class.java)
@@ -43,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initAppActivity() {
         val intent = Intent(this, AppActivity::class.java)
-        startActivity((intent))
+        startActivity(intent)
 
         finish()
     }

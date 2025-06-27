@@ -16,6 +16,7 @@ import androidx.navigation.fragment.navArgs
 import com.cst.wellnest.R
 import com.cst.wellnest.models.User
 import com.cst.wellnest.data.repositories.UserRepository
+import com.cst.wellnest.networking.repository.AuthenticationRepository
 import com.cst.wellnest.utils.extensions.showToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -84,12 +85,8 @@ class RegisterFragment: Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            UserRepository.saveUser(User(firstName, lastName, email, password))
             try {
-                withContext(Dispatchers.IO) {
-                    // network credential validation
-//                    AuthenticationRepository.register(RegisterAPIRequestModel(email, password, firstName, lastName) )
-                }
+                UserRepository.saveUser(User(firstName, lastName, email, password))
                 "Register success!".showToast(requireContext())
                 goToLogin()
             } catch (e: IOException) {

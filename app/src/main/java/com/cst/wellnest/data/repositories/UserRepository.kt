@@ -25,4 +25,10 @@ object UserRepository {
     ): User? = withContext(Dispatchers.IO) {
         ApplicationController.instance?.appDatabase?.userDao?.getUserByEmailAndPassword(email, password)
     }
+
+    suspend fun getUserByEmail(
+        email: String,
+    ): User? = withContext(Dispatchers.IO) {
+        ApplicationController.instance?.appDatabase?.userDao?.getUserByEmail(email)
+    }
 }
