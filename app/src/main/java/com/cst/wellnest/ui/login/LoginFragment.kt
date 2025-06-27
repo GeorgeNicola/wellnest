@@ -95,7 +95,9 @@ class LoginFragment: Fragment() {
                     withContext(Dispatchers.IO) {
                         // token returned by network call
                         SharedPrefsManager.saveAuthToken(result.token)
-                        SharedPrefsManager.saveEmail(email)
+                        SharedPrefsManager.saveEmail(email )
+                        SharedPrefsManager.saveUserId(user.id.toString())
+
                     }
                     goToMainAppActivity()
                 } else {

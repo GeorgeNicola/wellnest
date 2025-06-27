@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cst.wellnest.data.repositories.FoodRepository
+import com.cst.wellnest.managers.SharedPrefsManager
 import com.cst.wellnest.utils.extensions.logErrorMessage
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -66,7 +67,7 @@ class FoodItemViewModel : ViewModel() {
 
     private fun saveItemForDay(foodItem: FoodItem){
         viewModelScope.launch {
-            val userId = 1
+            val userId = SharedPrefsManager.getUserId()?.toIntOrNull() ?: 1
             val localDate = _selectedDate.value ?: LocalDate.now()
             val utilsDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
             val sqlDate = java.sql.Date(utilsDate.time)
@@ -97,11 +98,10 @@ class FoodItemViewModel : ViewModel() {
 
     fun getItems() {
         viewModelScope.launch {
-            val userId = 1
+            val userId = SharedPrefsManager.getUserId()?.toIntOrNull() ?: 1
             val localDate = _selectedDate.value ?: LocalDate.now()
             val utilsDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
             val sqlDate = java.sql.Date(utilsDate.time)
-
 
             val items = FoodRepository.getFoodItemsForUserOnDate(
                 userId,

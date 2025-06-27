@@ -7,10 +7,10 @@
         android:id="@+id/nav_pomodoro_fragment"
         android:icon="@drawable/ic_navigation_pomodoro"
         android:title="@string/bottom_navigation_pomodoro" />
-    <item
-        android:id="@+id/activity_fragment"
-        android:icon="@drawable/ic_navigation_activity"
-        android:title="@string/bottom_navigation_menu_activity" />
+<!--    <item-->
+<!--        android:id="@+id/activity_fragment"-->
+<!--        android:icon="@drawable/ic_navigation_activity"-->
+<!--        android:title="@string/bottom_navigation_menu_activity" />-->
     <item
         android:id="@+id/pomodoro_fragment"
         android:icon="@drawable/ic_navigation_profile"

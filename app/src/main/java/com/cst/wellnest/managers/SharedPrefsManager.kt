@@ -6,6 +6,7 @@ object SharedPrefsManager {
 
     private const val KEY_AUTH_TOKEN = "auth_token"
     private const val KEY_EMAIL = "email"
+    private const val KEY_USER_ID = "user_id"
 
     private val sharedPrefs
         get() = ApplicationController.instance?.sharedPrefs
@@ -24,9 +25,18 @@ object SharedPrefsManager {
         }
     }
 
+    fun saveUserId(userId: String) = sharedPrefs?.let { sp ->
+        with(sp.edit()) {
+            putString(KEY_USER_ID, userId)
+            apply()
+        }
+    }
+
     fun getAuthToken(): String? = sharedPrefs?.getString(KEY_AUTH_TOKEN, null)
 
     fun getEmail(): String? = sharedPrefs?.getString(KEY_EMAIL, null)
+    fun getUserId(): String? = sharedPrefs?.getString(KEY_USER_ID, null)
+
 
     fun logoutUser() {
         removeToken()
