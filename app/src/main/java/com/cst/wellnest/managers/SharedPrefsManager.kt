@@ -7,6 +7,9 @@ object SharedPrefsManager {
     private const val KEY_AUTH_TOKEN = "auth_token"
     private const val KEY_EMAIL = "email"
 
+    private val sharedPrefs
+        get() = ApplicationController.instance?.sharedPrefs
+
     fun saveAuthToken(token: String) = sharedPrefs?.let { sp ->
         with(sp.edit()) {
             putString(KEY_AUTH_TOKEN, token)
@@ -25,24 +28,25 @@ object SharedPrefsManager {
 
     fun getEmail(): String? = sharedPrefs?.getString(KEY_EMAIL, null)
 
-    fun removeToken() = sharedPrefs?.let { sp ->
+    fun logoutUser() {
+        removeToken()
+        removeEmail()
+    }
+
+    private fun removeToken() = sharedPrefs?.let { sp ->
         with(sp.edit()) {
             remove(KEY_AUTH_TOKEN)
             apply()
         }
     }
 
-    fun removeEmail() = sharedPrefs?.let { sp ->
+    private fun removeEmail() = sharedPrefs?.let { sp ->
         with(sp.edit()) {
             remove(KEY_AUTH_TOKEN)
             apply()
         }
     }
-
-    private val sharedPrefs
-        get() = ApplicationController.instance?.sharedPrefs
 }
 
 fun SharedPrefsManager.isUserLoggedIn() = !this.getAuthToken().isNullOrEmpty()
 
-fun SharedPrefsManager.logoutUser() = removeToken()

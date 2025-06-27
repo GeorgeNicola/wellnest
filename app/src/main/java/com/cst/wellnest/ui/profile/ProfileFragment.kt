@@ -14,6 +14,7 @@ import com.cst.wellnest.ApplicationController
 import com.cst.wellnest.AuthActivity
 import com.cst.wellnest.R
 import com.cst.wellnest.data.repositories.UserRepository
+import com.cst.wellnest.managers.SharedPrefsManager
 import com.cst.wellnest.utils.extensions.showToast
 import kotlinx.coroutines.launch
 
@@ -32,12 +33,11 @@ class ProfileFragment : Fragment() {
                 return
             }
 
-        val firstEt   = view.findViewById<EditText>(R.id.firstNameOnProfileEditText)
-        val lastEt    = view.findViewById<EditText>(R.id.lastNameOnProfileEditText)
-        val saveBtn   = view.findViewById<Button>(R.id.saveButton)
+        val firstEt = view.findViewById<EditText>(R.id.firstNameOnProfileEditText)
+        val lastEt = view.findViewById<EditText>(R.id.lastNameOnProfileEditText)
+        val saveBtn = view.findViewById<Button>(R.id.saveButton)
         val logoutBtn = view.findViewById<Button>(R.id.logoutButton)
 
-        // Prefill current names
         viewLifecycleOwner.lifecycleScope.launch {
             UserRepository.getUserByEmail(email)?.let { user ->
                 firstEt.setText(user.firstName)
@@ -45,10 +45,9 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        // Save updated names
         saveBtn.setOnClickListener {
             val first = firstEt.text.toString().trim()
-            val last  = lastEt.text.toString().trim()
+            val last = lastEt.text.toString().trim()
             if (first.isEmpty() || last.isEmpty()) {
                 "Both fields are required".showToast(requireContext())
                 return@setOnClickListener
@@ -56,16 +55,12 @@ class ProfileFragment : Fragment() {
             viewLifecycleOwner.lifecycleScope.launch {
                 val ok = UserRepository.updateUserNameByEmail(email, first, last)
                 if (ok) "Profile updated".showToast(requireContext())
-                else   "Update failed".showToast(requireContext())
+                else "Update failed".showToast(requireContext())
             }
         }
 
         logoutBtn.setOnClickListener {
-            // 1) clear all saved credentials
-            prefs.edit()
-                .remove("email")
-                .remove("token")
-                .apply()
+            SharedPrefsManager.logoutUser()
             goToLogin()
         }
     }
