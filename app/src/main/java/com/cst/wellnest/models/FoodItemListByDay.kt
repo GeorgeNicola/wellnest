@@ -36,5 +36,5 @@ data class FoodItemListByDay(
     @ColumnInfo(name = "food_id")
     val foodId: Int,
     @ColumnInfo(name = "selection_date")
-    val selectionDate: Date
+    val selectionDate: String
 )

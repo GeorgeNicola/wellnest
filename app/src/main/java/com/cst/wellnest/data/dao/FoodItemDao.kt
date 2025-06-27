@@ -13,4 +13,7 @@ interface FoodItemDao {
 
     @Query("SELECT * FROM food_item")
     fun getAll(): List<FoodItem>
+
+    @Query("DELETE FROM food_item WHERE id = :foodItemId")
+    suspend fun deleteFoodItemById(foodItemId: Long)
 }

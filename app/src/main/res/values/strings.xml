@@ -26,6 +26,8 @@
     <string name="confirm_password">Confirm password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="save">Save</string>
+    <string name="logout">Logout</string>
     <string name="login_fragment_register_button">Don\'t have an account? Register</string>
     <string name="register_fragment_login_button">Already have an account? Login</string>
 
@@ -37,6 +39,7 @@
     <string name="activity_fragment_title">ACTIVITY Fragment</string>
     <string name="profile_fragment_title">PROFILE Fragment</string>
     <string name="calorie_tracker_fragment_title">Calorie Tracker</string>"
+    <string name="calorie_tracker_search_fragment_title">Select foods</string>
 
 
 

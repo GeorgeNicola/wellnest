@@ -27,10 +27,10 @@
         android:id="@+id/nav_pomodoro_fragment"
         android:name="com.cst.wellnest.ui.pomodoro.PomodoroFragment"
         android:label="Pomodoro" />
-    <fragment
-        android:id="@+id/activity_fragment"
-        android:name="com.cst.wellnest.ui.activity.ActivityFragment"
-        android:label="Activity" />
+<!--    <fragment-->
+<!--        android:id="@+id/activity_fragment"-->
+<!--        android:name="com.cst.wellnest.ui.activity.ActivityFragment"-->
+<!--        android:label="Activity" />-->
     <fragment
         android:id="@+id/pomodoro_fragment"
         android:name="com.cst.wellnest.ui.profile.ProfileFragment"

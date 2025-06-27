@@ -10,8 +10,8 @@ import com.cst.wellnest.R
 import com.cst.wellnest.models.FoodItem
 
 class FoodItemAdapter(
-    val items: MutableList<FoodItem> = mutableListOf(),
-    private val onDeleteClick: (position: Int) -> Unit
+    private val items: MutableList<FoodItem> = mutableListOf(),
+    private val onDeleteClickById: (id: Long) -> Unit
 ): RecyclerView.Adapter<FoodItemAdapter.FoodViewHolder>() {
     override fun getItemCount() = items.size
 
@@ -28,7 +28,7 @@ class FoodItemAdapter(
         holder.name.text = item.name
 
         holder.btnDelete.setOnClickListener {
-            handleOnDeleteClick(position)
+            handleOnDeleteClick(item.id, position)
         }
     }
 
@@ -42,29 +42,17 @@ class FoodItemAdapter(
 
             val summary = view.context.getString(R.string.macro_summary_format, item.caloriesPerQuantity, item.proteinPerQuantity, item.carbsPerQuantity, item.fatsPerQuantity)
             view.findViewById<TextView>(R.id.tv_macros_summary).text = summary
-
-
-//            btnDelete.setOnClickListener {
-//                val position = bindingAdapterPosition
-//                if (position != RecyclerView.NO_POSITION) {
-//                    onDeleteClick(position)
-//                }
-//            }
         }
     }
 
     fun setFoods(items: List<FoodItem>) {
+        this.items.clear()
         this.items.addAll(items)
-        notifyItemInserted(items.size)
+        notifyDataSetChanged()
     }
 
-    private fun handleOnDeleteClick(position: Int) {
-        onDeleteClick(position)
+    private fun handleOnDeleteClick(id: Long, position: Int) {
+        onDeleteClickById(id)
         notifyItemRemoved(position)
-    }
-
-    private fun handleAddFood(item: FoodItem) {
-        items.add(item)
-        notifyItemInserted(items.size - 1)
     }
 }

@@ -8,29 +8,69 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Title Section -->
         <LinearLayout
+            android:id="@+id/calorie_tracker_title_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="16dp">
+            android:paddingTop="24dp"
+            android:paddingHorizontal="24dp">
 
-            <EditText
-                android:id="@+id/et_search"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/search"
-                android:inputType="text"
-                android:autofillHints="Search..." />
+            <!-- Back Button -->
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="@string/content_description"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true" />
 
-            <Button
-                android:id="@+id/btn_search"
+            <!-- App Icon -->
+            <ImageView
+                android:id="@+id/appIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_navigation_calories_counter"
+                android:contentDescription="@string/image"
+                android:layout_marginEnd="8dp" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/calorie_tracker_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/search"
-                android:layout_marginStart="8dp" />
+                android:text="@string/calorie_tracker_search_fragment_title"
+                android:textSize="24sp"
+                android:textStyle="bold" />
         </LinearLayout>
+
+        <!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:layout_marginBottom="16dp">-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/et_search"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:hint="@string/search"-->
+<!--                android:inputType="text"-->
+<!--                android:autofillHints="Search..." />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_search"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/search"-->
+<!--                android:layout_marginStart="8dp" />-->
+<!--        </LinearLayout>-->
 
 
         <androidx.recyclerview.widget.RecyclerView
